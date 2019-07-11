@@ -55,6 +55,3 @@ class Register_Form:
         self.window.title('JProgram - Simple Registration Form')
         self.createForm()
         self.window.mainloop()
-
-if __name__ == '__main__':
-    form = Register_Form()
