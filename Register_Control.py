@@ -4,35 +4,36 @@ class Register_Control:
     def __init__(self, name, email, password):
         self.person = Person(name, email, password)
 
-        self.name = 'Name: {}'.format(self.person.getName())
-        self.email = 'Email: {}'.format(self.person.getEmail())
-        self.password = 'Password: {}'.format(self.person.getSenha())
+        self.name = 'Name: {}'.format(self.person.get_name())
+        self.email = 'Email: {}'.format(self.person.get_email())
+        self.password = 'Password: {}'.format(self.person.get_password())
 
-        self.print_val()
+        self.print_console()
 
 
-    def print_val(self):
+    def print_console(self):
 
-        print('\n Name: ', self.person.getName(), \
-            '\n Email: ', self.person.getEmail(), \
-            '\n Password: ', self.person.getSenha()
+        print('\n Name: ', self.person.get_name(), \
+            '\n Email: ', self.person.get_email(), \
+            '\n Password: ', self.person.get_password()
         )
+
         self.save()
 
     def save(self):
         try:
-            self.arquivo = '{}.txt'.format(self.person.getName())
+            self.file_name = '{}.txt'.format(self.person.get_name())
 
-            self.f = open(self.arquivo, 'w')
-            self.f.write(self.name)
-            self.f.write('\n')
-            self.f.write(self.email)
-            self.f.write('\n')
-            self.f.write(self.password)
+            self.file = open(self.file_name, 'w')
+            self.file.write(self.name)
+            self.file.write('\n')
+            self.file.write(self.email)
+            self.file.write('\n')
+            self.file.write(self.password)
 
         except:
             print('Error saving data')
 
         finally:
-            self.f.close()
+            self.file.close()
             print('Data saved successfully')
