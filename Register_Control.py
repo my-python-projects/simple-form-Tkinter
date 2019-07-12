@@ -1,14 +1,17 @@
 from Person import Person
 
 class Register_Control:
-
-    def createPerson(self, name, email, password):
+    def __init__(self, name, email, password):
         self.person = Person(name, email, password)
 
-        self.printVal()
+        self.name = 'Name: {}'.format(self.person.getName())
+        self.email = 'Email: {}'.format(self.person.getEmail())
+        self.password = 'Password: {}'.format(self.person.getSenha())
+
+        self.print_val()
 
 
-    def printVal(self):
+    def print_val(self):
 
         print('\n Name: ', self.person.getName(), \
             '\n Email: ', self.person.getEmail(), \
@@ -18,15 +21,18 @@ class Register_Control:
 
     def save(self):
         try:
-            self.name = 'Name: {}'.format(self.person.getName())
             self.arquivo = '{}.txt'.format(self.person.getName())
+
             self.f = open(self.arquivo, 'w')
             self.f.write(self.name)
             self.f.write('\n')
+            self.f.write(self.email)
+            self.f.write('\n')
+            self.f.write(self.password)
 
         except:
-            print('Erro')
+            print('Error saving data')
 
         finally:
             self.f.close()
-            print('Dados salvos com sucesso')
+            print('Data saved successfully')
