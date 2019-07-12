@@ -1,9 +1,7 @@
 import tkinter as tk
-from Person import Person
+from Register_Control import Register_Control
 
 class Register_Form:
-    def __init__(self):
-        self.main()
 
     def createLabel(self, txt, y):
         self.label = tk.Label(self.window, text=txt)
@@ -15,27 +13,20 @@ class Register_Form:
         return self.input
 
     def createBtnSubmit(self):
-        self.button = tk.Button(self.window, text = 'Submit', width = 6, background = 'green', command = self.printDatas)
+        self.button = tk.Button(self.window, text = 'Submit', width = 6, background = 'green', command = self.getValInputs)
         self.button.place(x=100, y=233)
 
-    def createPerson(self):
-        self.name = self.inputName.get()
-        self.email = self.inputEmail.get()
-        self.senha = self.inputPassword.get()
 
-        self.person = Person(self.name, self.email, self.senha)
+    def getValInputs(self):
+        self.control = Register_Control()
+        self.control.createPerson(self.inputName.get(), self.inputEmail.get(), self.inputPassword.get())
+        self.alert()
 
-    def printDatas(self):
-        self.createPerson()
 
+    def alert(self):
         self.respost = tk.Label(self.window, text = 'User created successfully')
         self.respost.place(x=100, y=40)
 
-        print(
-            '\n Name: ', self.person.getName(),
-            '\n Email: ', self.person.getEmail(),
-            '\n Password: ', self.person.getSenha()
-        )
 
     def createForm(self):
         self.createLabel('Your Name: ', 80)
