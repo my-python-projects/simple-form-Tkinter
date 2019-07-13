@@ -20,17 +20,15 @@ class Register_Control:
 
 
     def print_console(self):
-
-        print('\n Name: ', self.person.get_name(), \
+        print(
+            '\n Name: ', self.person.get_name(), \
             '\n Email: ', self.person.get_email(), \
             '\n Password: ', self.person.get_password()
         )
-
         self.save()
 
     def save(self):
         try:
-
             self.file_name = '{}_{}.txt'.format(self.person.get_name(),self.text_date)
             self.file = open(self.file_name, 'w')
 
@@ -43,8 +41,8 @@ class Register_Control:
             self.file.write(self.text_time_data)
 
         except:
-            print('Error saving data')
+            print('\n Error saving data')
 
         finally:
             self.file.close()
-            print('Data saved successfully')
+            print('\n Data saved successfully')
