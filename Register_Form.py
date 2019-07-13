@@ -23,6 +23,7 @@ class Register_Form:
 
         self.__createLabel('Password: ', 180)
         self.inputPassword = self.__createInput(200)
+        self.inputPassword.config(show = '*')
 
         self.__createBtnSubmit()
 
