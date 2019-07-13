@@ -1,5 +1,5 @@
 from Person import Person
-from datetime import date
+import datetime
 
 class Register_Control:
     def __init__(self, name, email, password):
@@ -13,10 +13,10 @@ class Register_Control:
         self.print_console()
 
     def get_date(self):
-        self.current_date = date.today()
+        self.current_date = datetime.datetime.now()
 
         self.text_date = '{}_{}_{}'.format(self.current_date.day, self.current_date.month, self.current_date.year)
-        self.text_time_data = 'Date created: {}'.format(self.current_date.strftime('%d/%m/%Y %H:%M'))
+        self.text_time_data = 'Date created: {}'.format(self.current_date.strftime("%d/%m/%Y  %H:%M"))
 
 
     def print_console(self):
