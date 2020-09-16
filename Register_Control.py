@@ -1,5 +1,6 @@
 from Person import Person
 import datetime
+import os
 
 class Register_Control:
     def __init__(self, name, email, password):
@@ -29,7 +30,14 @@ class Register_Control:
 
     def save(self):
         try:
-            self.file_name = '{}_{}.txt'.format(self.person.get_name(),self.text_date)
+            self.dir_path = os.path.dirname(os.path.realpath(__file__))
+            self.folder = "logs"
+
+            if not os.path.isdir(self.folder):
+                os.mkdir(self.folder) # aqui criamos a pasta caso nao exista
+                print ('Pasta criada com sucesso!')
+
+            self.file_name = self.dir_path+ '/'+ self.folder+'/{}_{}.log'.format(self.person.get_name(),self.text_date)
             self.file = open(self.file_name, 'w')
 
             self.file.write(self.name)
