@@ -1,7 +1,7 @@
-from Person import Person
+from model.Person import Person
 import datetime
 import os
-from db import DB
+from model.DAO.PersonDAO import PersonDAO
 
 class Register_Control:
     def __init__(self, name, email, password):
@@ -54,8 +54,8 @@ class Register_Control:
                 "email": self.email,
                 "senha": self.password
             }
-
-            DB().insert(self.person)
+            
+            PersonDAO().insert(self.person)
 
         except:
             print('\n Error saving data')
