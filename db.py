@@ -1,16 +1,45 @@
+
 import datetime 
 from pymongo import MongoClient
 
-user = 'localhost'
-port = 27017
 
-conn = MongoClient(user, port)
+class DB:
+    
+    def create_conn(self):
+        self.user = 'localhost'
+        self.port = 27017
+        self.conn = MongoClient(self.user, self.port)
+        return self.conn
 
-# uma única instancia do MongoDB pode suportar diversos
-# banco de dados
+    def create_db(self):
+        self.db = self.create_conn().cadastrodb # criando bd cadastrodb
+        self.collection = self.db.cadastrodb
+        return self.db
 
-db = conn.cadastrodb # criando bd cadastrodb
 
+    def insert(self, person):
+        try:
+            self.c = self.create_db().persons
+            self.person_id = self.c.insert_one(person).inserted_id
+            print(self.person_id)
+            print(self.create_db().name) # nome do banco de dados
+
+        except:
+            print('Erro em realizar insert')
+
+        else:
+            print('Inserido com sucesso!')    
+            # listando as coleções disponiveis
+            print(self.create_db().list_collection_names())
+            
+            # utilizando List Comprehension:
+            person = [p for p in self.c.find()]
+            print(person) 
+
+
+
+
+'''
 # uma colecao é um grupo de documentos armazenados no MongoDB
 # relativamente parecido com conceito de tabelas de banco de dados relacionais
 
@@ -23,9 +52,6 @@ person1 = {
     "senha": "teste1234"
 }
 
-collection = db.persons
-
-person_id = collection.insert_one(person1).inserted_id
 
 print(db.name) # nome do banco de dados
 
@@ -37,3 +63,4 @@ person = [p for p in collection.find()]
 print(person)
 
 print(collection.find_one({"nome": "J"}))
+'''

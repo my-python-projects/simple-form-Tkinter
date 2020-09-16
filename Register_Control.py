@@ -1,6 +1,7 @@
 from Person import Person
 import datetime
 import os
+from db import DB
 
 class Register_Control:
     def __init__(self, name, email, password):
@@ -47,6 +48,14 @@ class Register_Control:
             self.file.write(self.password)
             self.file.write('\n')
             self.file.write(self.text_time_data)
+
+            self.person = {
+                "nome": self.name,
+                "email": self.email,
+                "senha": self.password
+            }
+
+            DB().insert(self.person)
 
         except:
             print('\n Error saving data')

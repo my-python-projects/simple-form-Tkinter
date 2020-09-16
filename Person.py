@@ -12,3 +12,4 @@ class Person:
 
     def get_password(self):
         return self.__password
+
