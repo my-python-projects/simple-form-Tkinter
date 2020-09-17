@@ -1,5 +1,6 @@
 import tkinter as tk
 from Register_Control import Register_Control
+from controller.services.log import Log
 
 class Register_Form:
     def __init__(self):
@@ -11,7 +12,9 @@ class Register_Form:
         self.window.geometry('400x300+200+200')
         self.window.title('JProgram - Simple Registration Form')
         self.__createForm()
+        Log().printLog("Programa aberto")
         self.window.mainloop()
+        
 
 
     def __createForm(self):
@@ -45,5 +48,6 @@ class Register_Form:
 
 
     def get_input_data(self):
+        Log().printLog("Clicado o botão de Submit")
         self.control = Register_Control(self.inputName.get(), self.inputEmail.get(), self.inputPassword.get())
         self.respost = self. __createLabel('User created successfully', 40)
